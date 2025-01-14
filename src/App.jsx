@@ -4,7 +4,7 @@ import Navbar from './Components/Navbar';
 // Otros componentes que quieras agregar
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
-
+import Mapa from './Components/Mapa'
 function App() {
   return (
     <Router>
@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
+      <Mapa></Mapa>
       <Footer />
     </Router>
   );

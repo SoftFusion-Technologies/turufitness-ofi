@@ -72,7 +72,7 @@ const Features = () => {
           Nuestros Entrenadores
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
-          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
+          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer1}
               alt="Entrenador 1"
@@ -81,7 +81,7 @@ const Features = () => {
             <h3 className="text-xl font-semibold">Juan Pérez</h3>
             <p className="text-gray-600">Especialista en musculación</p>
           </div>
-          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
+          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer2}
               alt="Entrenador 2"
@@ -90,7 +90,7 @@ const Features = () => {
             <h3 className="text-xl font-semibold">María García</h3>
             <p className="text-gray-600">Yoga y bienestar</p>
           </div>
-          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
+          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer3}
               alt="Entrenador 3"
@@ -108,7 +108,7 @@ const Features = () => {
           Lo que dicen nuestros clientes
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
-          <div className="w-1/3 sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
+          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
             <p className="text-xl italic text-gray-700 mb-4">
               "Excelente gimnasio, me ayudaron a mejorar mi rendimiento físico
               de manera increíble."
@@ -117,7 +117,7 @@ const Features = () => {
               - Laura González
             </span>
           </div>
-          <div className="w-1/3 sm:w-1/2 md:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
+          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
             <p className="text-xl italic text-gray-700 mb-4">
               "Entrenadores muy capacitados y un ambiente perfecto para
               entrenar."
