@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import yogaImage from '../Images/yogaImg.jpg';
 import spinningImage from '../Images/running.webp';
 import gymImage from '../Images/programa-de-entrenamiento-de-fuerza.webp';
@@ -8,7 +11,14 @@ import trainer2 from '../Images/Entrenadores/entrenador2.jpg';
 import trainer3 from '../Images/Entrenadores/entrenador3.jpg';
 
 const Features = () => {
-  const [currentClass, setCurrentClass] = useState(0);
+  useEffect(() => {
+    AOS.init({
+      // duration: 1000, // Duración de la animación en milisegundos
+      easing: 'ease-in-out', // Tipo de animación
+      once: true // Si la animación se repite al hacer scroll
+    });
+  }, []);
+
   const classes = [
     {
       title: 'Yoga',
@@ -38,16 +48,14 @@ const Features = () => {
         {classes.map((gymClass, index) => (
           <div
             key={index}
-            className={`w-full sm:w-1/2 lg:w-1/3 h-auto bg-cover bg-center rounded-xl relative group transition-all duration-300 ease-in-out transform ${
-              currentClass === index ? 'scale-105' : ''
-            }`}
-            onMouseEnter={() => setCurrentClass(index)}
+            className="w-full sm:w-1/2 lg:w-1/3 h-auto bg-cover bg-center rounded-xl relative group transition-transform duration-300 ease-in-out transform hover:scale-105"
+            data-aos="fade-up"
             style={{
               backgroundImage: `url(${gymClass.image})`,
-              backgroundSize: 'cover', // Asegura que la imagen cubra todo el contenedor
-              backgroundPosition: 'center', // Centra la imagen en el contenedor
-              backgroundRepeat: 'no-repeat', // Evita que la imagen se repita
-              minHeight: '250px' // Establece una altura mínima para la imagen
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '250px'
             }}
           >
             <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 p-4 rounded-lg text-white">
@@ -64,7 +72,7 @@ const Features = () => {
           Nuestros Entrenadores
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
-          <div className="w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center">
+          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer1}
               alt="Entrenador 1"
@@ -73,7 +81,7 @@ const Features = () => {
             <h3 className="text-xl font-semibold">Juan Pérez</h3>
             <p className="text-gray-600">Especialista en musculación</p>
           </div>
-          <div className="w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center">
+          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer2}
               alt="Entrenador 2"
@@ -82,7 +90,7 @@ const Features = () => {
             <h3 className="text-xl font-semibold">María García</h3>
             <p className="text-gray-600">Yoga y bienestar</p>
           </div>
-          <div className="w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center">
+          <div className="trainer-card group w-1/3 sm:w-1/4 md:w-1/6 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
             <img
               src={trainer3}
               alt="Entrenador 3"

@@ -104,22 +104,18 @@ const Footer = () => {
           <h2>Enlaces Rápidos</h2>
           <ul className="box">
             <li>
-              <a href="/tienda" target="_blank" rel="noopener noreferrer">
-                Tienda
+              <a href="/clases" target="_blank" rel="noopener noreferrer">
+                Clases
               </a>
             </li>
             <li>
-              <a href="/novedades" target="_blank" rel="noopener noreferrer">
-                Novedades
+              <a href="/entrenadores" target="_blank" rel="noopener noreferrer">
+                Entrenadores
               </a>
             </li>
             <li>
-              <a
-                href="/productos-destacados"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Productos Destacados
+              <a href="/horarios" target="_blank" rel="noopener noreferrer">
+                Horarios
               </a>
             </li>
             <li>
@@ -138,7 +134,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="https://www.google.com/maps"
+                href="https://www.google.com/maps/place/Gym+Location"
                 target="_blank"
                 rel="noopener noreferrer"
               >
