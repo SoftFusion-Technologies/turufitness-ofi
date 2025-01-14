@@ -31,7 +31,7 @@ const Navbar = () => {
             <a
               key={item.id}
               to={item.href}
-              className="a font-bignoodle text-lg font-medium text-black hover:text-gray-500 transition"
+              className="a font-bignoodle text-lg font-medium text-black hover:text-blue-500 transition"
             >
               {item.label}
             </a>
@@ -69,7 +69,7 @@ const Navbar = () => {
             <a
               key={item.id}
               to={item.href}
-              className="font-bignoodle block px-4 py-2 text-black hover:bg-gray-100 transition"
+              className="font-bignoodle block px-4 py-2 text-black hover:bg-blue-400 transition"
             >
               {item.label}
             </a>
