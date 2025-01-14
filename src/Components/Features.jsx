@@ -38,7 +38,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="px-4 py-10 bg-gray-100">
+    <div className="px-4 py-10">
       <h2 className="uppercase font-bignoodle text-4xl sm:text-6xl text-center text-gray-800 mb-12">
         ¡Conoce lo que ofrecemos!
       </h2>
