@@ -36,7 +36,7 @@ const Hero = () => {
     } else {
       // Reiniciar después de una pausa
       const resetTimeout = setTimeout(() => {
-        setTexto('');
+        setTexto('T');
         setIndice(0);
       }, 2500);
 
@@ -62,9 +62,6 @@ const Hero = () => {
         <div className="w-full text-center text-white pt-10 lg:pt-32">
           <h1 className="pt-4 text-3xl font-bold sm:text-8xl font-bignoodle">
             <span
-              className={
-                texto.length <= part1Length ? 'text-yellow' : 'text-yellow'
-              }
             >
               {texto.slice(0, part1Length)}
             </span>
