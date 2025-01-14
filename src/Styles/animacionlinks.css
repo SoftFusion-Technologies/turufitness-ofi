@@ -1,9 +1,9 @@
-.a {
+.link {
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
   }
-  .a:after {
+  .link:after {
     content: "";
     position: absolute;
     right: 0;
@@ -17,7 +17,7 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  .a:hover:after {
+  .link:hover:after {
     transform-origin: left;
     transform: scaleX(1);
   }

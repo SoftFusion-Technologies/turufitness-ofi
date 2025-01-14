@@ -13,28 +13,28 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo y Nombre */}
         <div className="flex items-center space-x-3">
-          <a to="/">
+          <Link to="/">
             {' '}
             {/* Redirige al inicio cuando se hace clic */}
             <img src={LogoTF} alt="Turu Fitness Logo" className="h-14 w-auto" />
-          </a>
-          <a to="/" className="a">
+          </Link>
+          <Link to="/" className="link">
             <span className="font-bignoodle text-2xl font-bold text-black tracking-wide uppercase">
               Turu Fitness
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Menú Desktop */}
         <div className="hidden md:flex space-x-8">
           {menuItems.map((item) => (
-            <a
+            <Link
               key={item.id}
               to={item.href}
-              className="a font-bignoodle text-lg font-medium text-black hover:text-blue-500 transition"
+              className="link font-bignoodle text-lg font-medium text-black hover:text-blue-400 transition"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -66,13 +66,13 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white">
           {menuItems.map((item) => (
-            <a
+            <Link
               key={item.id}
               to={item.href}
-              className="font-bignoodle block px-4 py-2 text-black hover:bg-blue-400 transition"
+              className="link font-bignoodle block px-4 py-2 text-black hover:bg-blue-400 transition"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}
