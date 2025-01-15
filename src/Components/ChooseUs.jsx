@@ -66,9 +66,9 @@ const ChooseUs = () => {
 
           <div className="choose_images">
             <img src={ImgChoose} alt="gym image" className="choose_img" />
-            <div className="choose_triangle choose_triangle-1"></div>
-            <div className="choose_triangle choose_triangle-2"></div>
-            <div className="choose_triangle choose_triangle-3"></div>
+            {/* <div className="choose_triangle choose_triangle-1"></div> */}
+            {/* <div className="choose_triangle choose_triangle-2"></div> */}
+            {/* <div className="choose_triangle choose_triangle-3"></div> */}
           </div>
         </div>
       </div>
