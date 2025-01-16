@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
-import { Link as ScrollLink } from 'react-scroll'; // Para smooth scrolling
-import { Link as RouterLink } from 'react-router-dom'; // Para navegación normal
+import React, { useState, useEffect } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import LogoTF from '../Images/logoTuruFitness.jpg';
 import '../Styles/animacionlinks.css';
 import { menuItems } from '../Config/menu';
+import Contact from '../Pages/Contact';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <nav className="bg-white shadow-md relative z-10">
@@ -27,10 +40,18 @@ const Navbar = () => {
         {/* Menú Desktop */}
         <div className="hidden md:flex space-x-8">
           {menuItems.map((item) =>
-            item.href.startsWith('#') ? ( // Si el href comienza con '#', usar ScrollLink
+            item.href === 'contacto' ? (
+              <button
+                key={item.id}
+                onClick={() => setIsContactOpen(true)}
+                className="link font-bignoodle text-base md:text-md lg:text-lg xl:text-2xl font-medium text-black hover:text-blue-400 transition"
+              >
+                {item.label}
+              </button>
+            ) : item.href.startsWith('#') ? (
               <ScrollLink
                 key={item.id}
-                to={item.href.replace('#', '')} // Eliminar '#' para coincidir con el id del elemento
+                to={item.href.replace('#', '')}
                 smooth={true}
                 duration={500}
                 className="link font-bignoodle text-base md:text-md lg:text-lg xl:text-2xl font-medium text-black hover:text-blue-400 transition cursor-pointer"
@@ -77,14 +98,25 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col space-y-4 py-4 px-6">
             {menuItems.map((item) =>
-              item.href.startsWith('#') ? (
+              item.href === 'contacto' ? (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setIsContactOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="link font-bignoodle text-base font-medium text-black hover:text-blue-400 transition text-left"
+                >
+                  {item.label}
+                </button>
+              ) : item.href.startsWith('#') ? (
                 <ScrollLink
                   key={item.id}
                   to={item.href.replace('#', '')}
                   smooth={true}
                   duration={500}
                   className="link font-bignoodle text-base font-medium text-black hover:text-blue-400 transition cursor-pointer"
-                  onClick={() => setIsMenuOpen(false)} // Cierra el menú al hacer clic
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </ScrollLink>
@@ -93,7 +125,7 @@ const Navbar = () => {
                   key={item.id}
                   to={item.href}
                   className="link font-bignoodle text-base font-medium text-black hover:text-blue-400 transition"
-                  onClick={() => setIsMenuOpen(false)} // Cierra el menú al hacer clic
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </RouterLink>
@@ -102,6 +134,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      <Contact open={isContactOpen} setIsOpen={setIsContactOpen} />
     </nav>
   );
 };
