@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md relative z-10">
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+      <div className="container container-navbar mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo y Nombre */}
         <div className="flex items-center space-x-3">
           <Link to="/">
@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link
               key={item.id}
               to={item.href}
-              className="link font-bignoodle text-lg font-medium text-black hover:text-blue-400 transition"
+              className="link font-bignoodle text-base md:text-md lg:text-lg xl:text-2xl font-medium text-black hover:text-blue-400 transition"
             >
               {item.label}
             </Link>

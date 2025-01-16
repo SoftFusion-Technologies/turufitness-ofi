@@ -84,7 +84,7 @@ const Hero = () => {
           <div className="flex justify-center items-center flex-col gap-4 pt-5 text-white sm:flex-row">
             <div className="w-[200px]">
               <Link
-                to="/comenzar"
+                to="/contacto"
                 className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-10 py-3 rounded-xl font-bignoodle sm:text-3xl mt-5 transition-transform transform hover:scale-105 hover:shadow-lg focus:outline-none"
               >
                 Comenzar

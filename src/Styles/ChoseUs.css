@@ -1,6 +1,6 @@
 /*=============== GOOGLE FONTS ===============*/
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Red+Hat+Display:wght@400;700;900&family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Red+Hat+Display:wght@400;700;900&family=Satisfy&display=swap");
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -20,8 +20,8 @@
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: 'Red Hat Display', sans-serif;
-  --second-font: 'Satisfy', cursive;
+  --body-font: "Red Hat Display", sans-serif;
+  --second-font: "Satisfy", cursive;
   --biggest-font-size: 2rem;
   --bigger-font-size: 1.5rem;
   --big-font-size: 1.25rem;
@@ -71,10 +71,8 @@ body {
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
-.container {
-  max-width: 1124px;
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
+.choose_container{
+  margin: 0 auto;
 }
 
 .section {
@@ -222,7 +220,7 @@ body {
 }
 
 .button:after {
-  content: '';
+  content: "";
   background-color: var(--text-color-light);
   width: 100%;
   z-index: -1;
@@ -304,7 +302,6 @@ body {
   margin: 0 auto;
 }
 
-
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
@@ -330,7 +327,6 @@ body {
   .home_images {
     justify-content: center;
   }
-
   .pricing_container {
     grid-template-columns: 280px;
   }
@@ -343,6 +339,14 @@ body {
   }
   .footer_logo {
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .choose_description {
+    width: 100%;
+    padding: 0 1.5rem;
+    text-align: center;
   }
 }
 
@@ -594,4 +598,3 @@ body {
     width: 300px;
   }
 }
-

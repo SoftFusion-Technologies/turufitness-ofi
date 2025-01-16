@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import Contact from './Pages/Contact';
 
 // Otros componentes que quieras agregar
 import Home from './Pages/Home';
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/contacto" element={<Contact />} />
       </Routes>
       <Mapa></Mapa>
       <Footer />
