@@ -5,7 +5,9 @@ import Contact from './Pages/Contact';
 // Otros componentes que quieras agregar
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
-import Mapa from './Components/Mapa'
+import Mapa from './Components/Mapa';
+import Planes from './Pages/Planes';
+
 function App() {
   return (
     <Router>
@@ -13,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacto" element={<Contact />} />
+        <Route path="/planes" element={<Planes />} />
       </Routes>
       <Mapa></Mapa>
       <Footer />

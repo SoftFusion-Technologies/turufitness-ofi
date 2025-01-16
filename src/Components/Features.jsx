@@ -67,7 +67,7 @@ const Features = () => {
       </div>
 
       {/* Entrenadores */}
-      <div className="mb-20">
+      <div className="mb-20" id="entrenadores">
         <h2 className="uppercase font-bignoodle text-4xl sm:text-6xl text-center text-gray-800 mb-12">
           Nuestros Entrenadores
         </h2>
