@@ -8,7 +8,7 @@ export default function Mapa() {
       id="ubicacion"
     >
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.8578037753224!2d-65.5021379!3d-27.1724453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9423cac85d8aa795%3A0xb16b8d59b21274a!2s%C3%91u%C3%B1orco%20250%2C%20T4142%20Monteros%2C%20Tucum%C3%A1n!5e0!3m2!1ses-419!2sar!4v1690488390213!5m2!1ses-419!2sar"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4248.555225115029!2d-65.3631369!3d-27.2624444!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9423b1d61b1ec69b%3A0x3fe2abcc6027fec4!2sTuru%20Fitness%20y%20musculaci%C3%B3n!5e1!3m2!1ses!2sar!4v1737509603533!5m2!1ses!2sar"
         width="100%"
         height="450"
         style={{ border: '0' }}

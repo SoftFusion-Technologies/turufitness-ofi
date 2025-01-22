@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import chatDobleSVG from "../Images/SVG/chatDouble.svg";
+import instagramSVG from "../Images/SVG/instagram.svg";
+import whatsappSVG from '../Images/SVG/whatsapp.svg';
+import locationSVG from '../Images/SVG/location.svg';
 import Modal from "../Components/Modal";
 
 const Contact = ({ open, setIsOpen }) => {
   const [isModalContactOpen, setIsModalContactOpen] = useState(open);
+  const inputName = useRef(null);
   useEffect(() => {
     setIsModalContactOpen(open);
+    if (open){
+      setTimeout(() => {
+        inputName.current.focus();
+      }, 100);
+    }
   }, [open]);
 
   const handleCancel = () => {
@@ -62,6 +72,7 @@ const Contact = ({ open, setIsOpen }) => {
         title="Encuentra todas las formas de contactarnos aquí 💪😀"
         onCancel={handleCancel}
         onConfirm={handleConfirm}
+        svgIcon={chatDobleSVG}
       >
         <div className="flex flex-col md:flex-row gap-8">
           {/* Columna izquierda - Información de contacto */}
@@ -75,17 +86,7 @@ const Contact = ({ open, setIsOpen }) => {
 
               {/* WhatsApp */}
               <div className="flex items-center gap-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  fill="none"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-                  <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-                </svg>
+                <img src={whatsappSVG} alt="Icono" className="size-6" />
                 <a
                   href="https://api.whatsapp.com/send/?phone=543863564651&text=Hola%21+vengo+desde+el+sitio+oficial%21%21&type=phone_number&app_absent=0"
                   target="_blank"
@@ -98,18 +99,7 @@ const Contact = ({ open, setIsOpen }) => {
 
               {/* Instagram */}
               <div className="flex items-center gap-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  fill="none"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                  <path d="M16.5 7.5l0 .01" />
-                </svg>
+              <img src={instagramSVG} alt="Icono" className="size-6" />
                 <a
                   href="https://www.instagram.com/turufitnees/"
                   target="_blank"
@@ -128,19 +118,9 @@ const Contact = ({ open, setIsOpen }) => {
 
                 {/* Dirección */}
                 <div className="flex items-center gap-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    fill="none"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 2c4.97 0 9 4.03 9 9s-9 13 -9 13s-9 -8.03 -9 -13s4.03 -9 9 -9z" />
-                    <path d="M12 11a2 2 0 1 0 0 -4a2 2 0 0 0 0 4z" />
-                  </svg>
+                  <img src={locationSVG} alt="Icono" className="size-6" />
                   <a
-                    href="https://www.google.com/maps/place/Espa%C3%B1a+1732,+T4146+Concepci%C3%B3n,+Tucum%C3%A1n/@-27.3458572,-65.5989922,17z/data=!3m1!4b1!4m6!3m5!1s0x9423cfd9beacde8f:0xcd929e71cf7bd11!8m2!3d-27.345862!4d-65.5964173!16s%2Fg%2F11jk25nd8b?entry=ttu"
+                    href="https://maps.app.goo.gl/Tu1Wr5XMeXHQnP1GA"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-300 transition-colors"
@@ -169,6 +149,7 @@ const Contact = ({ open, setIsOpen }) => {
                   onChange={handleChange}
                   placeholder="Ej: Juan Pérez"
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  ref={inputName}
                 />
               </div>
               <div>
