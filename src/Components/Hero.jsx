@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
+import React, { useState, useEffect, useContext } from 'react';
+import { ContactContext } from '../context/ContactContext'; // Importa el contexto
 import Img1 from '../assets/img1bg.webp';
 import Img2 from '../assets/img2bg.webp';
 import Img3 from '../assets/img3.webp';
+
 const Hero = () => {
   const [texto, setTexto] = useState('');
   const [indice, setIndice] = useState(0);
@@ -25,6 +26,7 @@ const Hero = () => {
 
     return () => clearInterval(interval); // Limpiar intervalos cuando se desmonte el componente
   }, []);
+
   useEffect(() => {
     if (indice < fullText.length) {
       const timeout = setTimeout(() => {
@@ -48,6 +50,9 @@ const Hero = () => {
   const part1Length = 'TURU'.length;
   const part2Length = fullText.length;
 
+  // Usa el contexto para abrir el modal de contacto
+  const { setIsContactOpen } = useContext(ContactContext);
+
   return (
     <div
       className="h-screen w-full Home"
@@ -55,16 +60,13 @@ const Hero = () => {
         backgroundImage: `url(${backgroundImages[backgroundIndex]})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        transition: 'background-image 1s ease-in-out'
+        transition: 'background-image 1s ease-in-out',
       }}
     >
       <div className="pt-20 flex flex-col items-center justify-center lg:pt-0 lg:flex-row">
         <div className="w-full text-center text-white pt-10 lg:pt-32">
           <h1 className="pt-4 text-3xl font-bold sm:text-8xl font-bignoodle">
-            <span
-            >
-              {texto.slice(0, part1Length)}
-            </span>
+            <span>{texto.slice(0, part1Length)}</span>
             <span
               className={
                 texto.length > part1Length && texto.length <= part2Length
@@ -83,12 +85,12 @@ const Hero = () => {
           </div>
           <div className="flex justify-center items-center flex-col gap-4 pt-5 text-white sm:flex-row">
             <div className="w-[200px]">
-              <Link
-                to="/contacto"
+              <button
+                onClick={() => setIsContactOpen(true)}
                 className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-10 py-3 rounded-xl font-bignoodle sm:text-3xl mt-5 transition-transform transform hover:scale-105 hover:shadow-lg focus:outline-none"
               >
                 Comenzar
-              </Link>
+              </button>
             </div>
           </div>
         </div>

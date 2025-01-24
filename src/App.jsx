@@ -10,20 +10,25 @@ import Planes from './Pages/Planes';
 import Instalaciones from './Pages/Instalaciones';
 import FAQ from './Pages/FAQ';
 
+// Importar el proveedor del contexto
+import { ContactProvider } from './context/ContactContext';
+
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/planes" element={<Planes />} />
-        <Route path="/instalaciones" element={<Instalaciones />} />
-        <Route path="/faq" element={<FAQ />} />
-      </Routes>
-      <Mapa></Mapa>
-      <Footer />
-    </Router>
+    <ContactProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/planes" element={<Planes />} />
+          <Route path="/instalaciones" element={<Instalaciones />} />
+          <Route path="/faq" element={<FAQ />} />
+        </Routes>
+        <Mapa />
+        <Footer />
+      </Router>
+    </ContactProvider>
   );
 }
 

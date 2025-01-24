@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 import LogoTF from '../Images/logoTuruFitness.jpg';
 import '../Styles/animacionlinks.css';
 import { menuItems } from '../Config/menu';
 import Contact from '../Pages/Contact';
+import { ContactContext } from '../context/ContactContext'; // Importa el contexto
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const { isContactOpen, setIsContactOpen } = useContext(ContactContext); // Usa el contexto
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleResize = () => {
