@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ContactContext } from '../context/ContactContext'; // Importa el contexto
+import { ContactContext } from '../context/ContactContext'; 
 import Img1 from '../assets/img1bg.webp';
 import Img2 from '../assets/img2bg.webp';
 import Img3 from '../assets/img3.webp';

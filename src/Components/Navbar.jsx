@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import LogoTF from '../Images/logoTuruFitness.jpg';
 import '../Styles/animacionlinks.css';
 import { menuItems } from '../Config/menu';
 import Contact from '../Pages/Contact';
-import { ContactContext } from '../context/ContactContext'; // Importa el contexto
+import { ContactContext } from '../context/ContactContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isContactOpen, setIsContactOpen } = useContext(ContactContext); // Usa el contexto
+  const { isContactOpen, setIsContactOpen } = useContext(ContactContext);
+  const navigate = useNavigate(); //Esto sirve para menar la navegación 
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -23,6 +23,24 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Función para manejar el scroll después de redirigir
+  const handleScroll = (to) => {
+    if (window.location.pathname !== '/') {
+      navigate('/'); 
+      setTimeout(() => {
+        const section = document.getElementById(to);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const section = document.getElementById(to);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <nav className="bg-white shadow-md relative z-10">
@@ -51,15 +69,14 @@ const Navbar = () => {
                 {item.label}
               </button>
             ) : item.href.startsWith('#') ? (
-              <ScrollLink
+              <RouterLink
                 key={item.id}
-                to={item.href.replace('#', '')}
-                smooth={true}
-                duration={500}
+                to="/"
+                onClick={() => handleScroll(item.href.replace('#', ''))}
                 className="link font-bignoodle text-base md:text-md lg:text-lg xl:text-2xl font-medium text-black hover:text-blue-400 transition cursor-pointer"
               >
                 {item.label}
-              </ScrollLink>
+              </RouterLink>
             ) : (
               <RouterLink
                 key={item.id}
@@ -112,16 +129,17 @@ const Navbar = () => {
                   {item.label}
                 </button>
               ) : item.href.startsWith('#') ? (
-                <ScrollLink
+                <RouterLink
                   key={item.id}
-                  to={item.href.replace('#', '')}
-                  smooth={true}
-                  duration={500}
+                  to="/"
+                  onClick={() => {
+                    handleScroll(item.href.replace('#', ''));
+                    setIsMenuOpen(false);
+                  }}
                   className="link font-bignoodle text-base font-medium text-black hover:text-blue-400 transition cursor-pointer"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
-                </ScrollLink>
+                </RouterLink>
               ) : (
                 <RouterLink
                   key={item.id}

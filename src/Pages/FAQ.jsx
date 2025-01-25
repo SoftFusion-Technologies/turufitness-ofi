@@ -67,34 +67,34 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto my-8 px-4">
-      <h1 className="text-5xl font-extrabold text-gray-800 mb-6 text-center font-bignoodle">
+    <div className="max-w-4xl mx-auto my-20 px-4">
+      <h1 className="text-6xl font-extrabold text-gray-800 mb-12 text-center font-bignoodle transform hover:scale-105 transition-transform duration-300">
         Preguntas Frecuentes
       </h1>
-      <div className="space-y-4">
+      <div className="space-y-6">
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="bg-white shadow-lg rounded-xl overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="bg-white shadow-2xl rounded-2xl overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-3xl"
           >
             <button
-              className="w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 bg-gradient-to-r from-blue-400 to-blue-500 hover:bg-gradient-to-l focus:outline-none transition-colors duration-200"
+              className="w-full text-left px-8 py-6 text-xl font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:bg-gradient-to-l focus:outline-none transition-all duration-300"
               onClick={() => toggleAccordion(index)}
             >
               <div className="flex items-center justify-between">
                 <span>{faq.question}</span>
                 <span>
                   {activeIndex === index ? (
-                    <AiOutlineMinus className="text-white text-xl" />
+                    <AiOutlineMinus className="text-white text-2xl transform hover:rotate-180 transition-transform duration-300" />
                   ) : (
-                    <AiOutlinePlus className="text-white text-xl" />
+                    <AiOutlinePlus className="text-white text-2xl transform hover:rotate-90 transition-transform duration-300" />
                   )}
                 </span>
               </div>
             </button>
             {activeIndex === index && (
-              <div className="px-6 py-4 text-gray-600 bg-gray-50">
-                <p>{faq.answer}</p>
+              <div className="px-8 py-6 text-gray-700 bg-gray-50 border-t border-gray-200">
+                <p className="text-lg leading-relaxed">{faq.answer}</p>
               </div>
             )}
           </div>
