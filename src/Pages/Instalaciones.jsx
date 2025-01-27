@@ -214,7 +214,7 @@ const Instalaciones = () => {
 
           <div className="flex flex-col lg:flex-row gap-8 mt-12 items-center">
             {/* Columna izquierda (Horarios, Ubicación, Contacto) */}
-            <div className="w-full lg:w-2/5">
+            <div className="w-full lg:w-2/5" id="instalaciones">
               <div className="grid grid-cols-1 gap-6">
                 {infoCards.map((card, index) => (
                   <div

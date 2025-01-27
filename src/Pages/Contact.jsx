@@ -7,7 +7,6 @@ import Modal from "../Components/Modal";
 
 const Contact = ({ open, setIsOpen }) => {
   const [isModalContactOpen, setIsModalContactOpen] = useState(open);
-  const inputName = useRef(null);
   useEffect(() => {
     setIsModalContactOpen(open);
     if (open){
@@ -73,6 +72,7 @@ const Contact = ({ open, setIsOpen }) => {
         onCancel={handleCancel}
         onConfirm={handleConfirm}
         svgIcon={chatDobleSVG}
+        colorIcon="blue"
       >
         <div className="flex flex-col md:flex-row gap-8">
           {/* Columna izquierda - Información de contacto */}
@@ -151,7 +151,6 @@ const Contact = ({ open, setIsOpen }) => {
                   onChange={handleChange}
                   placeholder="Ej: Juan Pérez"
                   className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  ref={inputName}
                 />
               </div>
               <div>
