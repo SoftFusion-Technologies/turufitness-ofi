@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CountUp from 'react-countup'; // Importar la librería
+import {
+  FaUsers,
+  FaDumbbell,
+  FaRegLightbulb,
+  FaHeartbeat
+} from 'react-icons/fa';
+import CountUp from 'react-countup';
 import '../Styles/ChoseUs.css';
 import ImgChoose from '../Images/choose-img.png';
 import AOS from 'aos';
@@ -39,72 +45,56 @@ const ChooseUs = () => {
   }, []);
 
   return (
-    <section className="choose section" id="choose" data-aos="fade-up">
-      <div className="choose_overflow" ref={counterRef}>
-        <div className="choose_container container grid">
-          <div className="choose_content">
-            <div className="section_data">
-              <h2 className="section_subtitle text-blue-400">
-                {' '}
-                La Mejor Elección
-              </h2>
-              <div className="section_titles">
-                <h1 className="section_title-border font-bold">POR QUÉ</h1>
-                <h1 className="section_title font-bold">ELEGIRNOS?</h1>
-              </div>
-            </div>
-            <p className="choose_description text-gray-600 animate__animated animate__fadeIn">
-              Al unirte a <b className="text-blue-400">TURU FITNESS</b>,
-              descubrirás un espacio donde tu bienestar y objetivos son nuestra
-              prioridad. Contamos con un equipo altamente capacitado y
-              tecnología de punta para que puedas alcanzar tus metas de manera
-              efectiva y divertida. ¡Transforma tu vida con nosotros!
-            </p>
-            <div className="choose_data">
-              <div className="choose_group">
-                <h3 className="choose_number">
-                  +
-                  {startCount && (
-                    <CountUp start={0} end={300} duration={3} separator="," />
-                  )}{' '}
-                  {/* Animación para el número */}
-                </h3>
-                <p className="choose_subtitle">Miembros Activos</p>
-              </div>
-              <div className="choose_group">
-                <h3 className="choose_number">
-                  +
-                  {startCount && (
-                    <CountUp start={0} end={5} duration={3} separator="," />
-                  )}{' '}
-                  {/* Animación para el número */}
-                </h3>
-                <p className="choose_subtitle">Entrenadores Profesionales</p>
-              </div>
-              <div className="choose_group">
-                <h3 className="choose_number">Más de 100</h3>
-                <p className="choose_subtitle">
-                  Planes de Entrenamiento Personalizados
-                </p>
-              </div>
-              <div className="choose_group">
-                <h3 className="choose_number">
-                  +
-                  {startCount && (
-                    <CountUp start={0} end={30} duration={3} separator="," />
-                  )}{' '}
-                  {/* Animación para el número */}
-                </h3>
-                <p className="choose_subtitle">Equipos de Última Tecnología</p>
-              </div>
-            </div>
+    <section
+      className="py-20 bg-gradient-to-b from-white to-gray-100"
+      id="choose"
+      data-aos="fade-up"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={counterRef}>
+        <div className="text-center mb-12">
+          <h2 className="text-blue-500 text-lg font-semibold uppercase">
+            La Mejor Elección
+          </h2>
+          <h1 className="uppercase text-4xl sm:text-5xl font-bold text-gray-800 mt-2">
+            ¿Por qué elegirnos?
+          </h1>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            En <span className="font-bold text-blue-500">TURU FITNESS</span>{' '}
+            encontrarás más que un gimnasio: un equipo que te acompaña en cada
+            paso. Tecnología de punta, entrenadores certificados y una comunidad
+            motivadora te esperan.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <FaUsers className="text-blue-500 text-4xl mx-auto mb-4" />
+            <h3 className="text-3xl font-bold text-gray-800">
+              +{startCount && <CountUp end={200} duration={3} />}
+            </h3>
+            <p className="text-gray-600 mt-2">Miembros Activos</p>
           </div>
 
-          <div className="choose_images">
-            <img src={ImgChoose} alt="gym image" className="choose_img" />
-            <div className="choose_triangle choose_triangle-1"></div>
-            <div className="choose_triangle choose_triangle-2"></div>
-            <div className="choose_triangle choose_triangle-3"></div>
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <FaDumbbell className="text-blue-500 text-4xl mx-auto mb-4" />
+            <h3 className="text-3xl font-bold text-gray-800">
+              +{startCount && <CountUp end={7} duration={3} />}
+            </h3>
+            <p className="text-gray-600 mt-2">Entrenadores Certificados</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <FaRegLightbulb className="text-blue-500 text-4xl mx-auto mb-4" />
+            <h3 className="text-3xl font-bold text-gray-800">+15</h3>
+            <p className="text-gray-600 mt-2">Planes Personalizados</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-md text-center">
+            <FaHeartbeat className="text-blue-500 text-4xl mx-auto mb-4" />
+            <h3 className="text-3xl font-bold text-gray-800">
+              +{startCount && <CountUp end={30} duration={3} />}
+            </h3>
+            <p className="text-gray-600 mt-2">Equipos de Última Generación</p>
           </div>
         </div>
       </div>

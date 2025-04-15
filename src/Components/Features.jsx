@@ -1,66 +1,109 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import yogaImage from '../Images/yogaImg.jpg';
-import spinningImage from '../Images/running.webp';
-import gymImage from '../Images/programa-de-entrenamiento-de-fuerza.webp';
+// Imágenes de actividades
+import crossfitImg from '../Images/crossfit.jpg';
+import kickboxingImg from '../Images/kickboxing.jpg';
+import musculacionImg from '../Images/musculacion.jpg';
+import funcionalImg from '../Images/funcional.jpg';
 
-import trainer1 from '../Images/Entrenadores/entrenador1.jpg';
-import trainer2 from '../Images/Entrenadores/entrenador2.jpg';
-import trainer3 from '../Images/Entrenadores/entrenador3.jpg';
+// Imágenes de entrenadores
+import coachHombre from '../Images/Entrenadores/coachHombres.jpg';
+import coachMujer from '../Images/Entrenadores/coachMujer.png';
 
 const Features = () => {
   useEffect(() => {
-    AOS.init({
-      // duration: 1000, // Duración de la animación en milisegundos
-      easing: 'ease-in-out', // Tipo de animación
-      once: true // Si la animación se repite al hacer scroll
-    });
+    AOS.init({ easing: 'ease-in-out', once: true });
   }, []);
 
   const classes = [
     {
-      title: 'Yoga',
-      image: yogaImage,
-      description: 'Relájate y estira tu cuerpo con nuestras clases de yoga.'
+      title: 'CrossFit',
+      image: crossfitImg,
+      description:
+        'Entrenamiento funcional de alta intensidad para desafiar tus límites.'
     },
     {
-      title: 'Spinning',
-      image: spinningImage,
-      description: 'Acelera tu ritmo cardíaco con intensas clases de spinning.'
+      title: 'Kick Boxing',
+      image: kickboxingImg,
+      description:
+        'Mejora tu resistencia y técnica con clases intensas de kick boxing.'
     },
     {
-      title: 'Entrenamiento de fuerza',
-      image: gymImage,
-      description: 'Fortalece tu cuerpo con entrenamientos de musculación.'
+      title: 'Musculación',
+      image: musculacionImg,
+      description:
+        'Fortalece y desarrolla tu cuerpo con rutinas de musculación personalizadas.'
+    },
+    {
+      title: 'Funcional',
+      image: funcionalImg,
+      description: 'Entrenamientos dinámicos que trabajan todo tu cuerpo.'
     }
+  ];
+
+  const trainers = [
+    {
+      name: 'Andrea Robles',
+      disciplines: 'Funcional',
+      schedule: '09:00 a 10:00',
+      gender: 'f'
+    },
+    { name: 'Toni Ruiz', disciplines: 'Funcional', schedule: '20:00 a 21:00' },
+    {
+      name: 'Joaquín Saltos',
+      disciplines: 'Funcional, Musculación',
+      schedule: '15:00 a 17:00'
+    },
+    {
+      name: 'Luciano Roldán',
+      disciplines: 'CrossFit, Musculación',
+      schedule: '17:00 a 19:00'
+    },
+    {
+      name: 'Noelia Albornoz',
+      disciplines: 'Musculación',
+      schedule: '19:00 a 21:00',
+      gender: 'f'
+    },
+    {
+      name: 'Jony Herrera',
+      disciplines: 'Musculación',
+      schedule: '21:00 a 23:00'
+    },
+    {
+      name: 'Nubia Saltos',
+      disciplines: 'Turno Mañana',
+      schedule: '',
+      gender: 'f'
+    },
+    { name: 'Turu Lescano', disciplines: 'Turno Tarde', schedule: '' }
   ];
 
   return (
     <div className="px-4 py-10">
       <h2 className="uppercase font-bignoodle text-4xl sm:text-6xl text-center text-gray-800 mb-12">
-        ¡Conoce lo que ofrecemos!
+        ¡Conocé lo que ofrecemos!
       </h2>
 
-      {/* Clases */}
+      {/* Actividades */}
       <div className="flex flex-wrap justify-center gap-8 mb-20">
-        {classes.map((gymClass, index) => (
+        {classes.map((item, index) => (
           <div
             key={index}
-            className="w-full sm:w-1/2 lg:w-1/3 h-auto bg-cover bg-center rounded-xl relative group transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="w-full sm:w-1/2 lg:w-1/3 h-64 rounded-xl relative group transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-lg"
             data-aos="fade-up"
             style={{
-              backgroundImage: `url(${gymClass.image})`,
+              backgroundImage: `url(${item.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              minHeight: '250px'
+              backgroundRepeat: 'no-repeat'
             }}
           >
             <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 p-4 rounded-lg text-white">
-              <h3 className="text-2xl font-semibold">{gymClass.title}</h3>
-              <p className="text-sm">{gymClass.description}</p>
+              <h3 className="text-2xl font-semibold">{item.title}</h3>
+              <p className="text-sm">{item.description}</p>
             </div>
           </div>
         ))}
@@ -72,60 +115,26 @@ const Features = () => {
           Nuestros Entrenadores
         </h2>
         <div className="flex flex-wrap justify-center gap-8">
-          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
-            <img
-              src={trainer1}
-              alt="Entrenador 1"
-              className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 className="text-xl font-semibold">Juan Pérez</h3>
-            <p className="text-gray-600">Especialista en musculación</p>
-          </div>
-          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
-            <img
-              src={trainer2}
-              alt="Entrenador 2"
-              className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 className="text-xl font-semibold">María García</h3>
-            <p className="text-gray-600">Yoga y bienestar</p>
-          </div>
-          <div className="trainer-card group w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105">
-            <img
-              src={trainer3}
-              alt="Entrenador 3"
-              className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-            />
-            <h3 className="text-xl font-semibold">Carlos Díaz</h3>
-            <p className="text-gray-600">Entrenamiento funcional</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonios */}
-      <div>
-        <h2 className="uppercase font-bignoodle text-4xl sm:text-6xl text-center text-gray-800 mb-12">
-          Lo que dicen nuestros clientes
-        </h2>
-        <div className="flex flex-wrap justify-center gap-8">
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
-            <p className="text-xl italic text-gray-700 mb-4">
-              "Excelente gimnasio, me ayudaron a mejorar mi rendimiento físico
-              de manera increíble."
-            </p>
-            <span className="text-lg font-semibold text-gray-800">
-              - Laura González
-            </span>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white p-6 rounded-lg shadow-md text-center">
-            <p className="text-xl italic text-gray-700 mb-4">
-              "Entrenadores muy capacitados y un ambiente perfecto para
-              entrenar."
-            </p>
-            <span className="text-lg font-semibold text-gray-800">
-              - Roberto Martínez
-            </span>
-          </div>
+          {trainers.map((trainer, idx) => (
+            <div
+              key={idx}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 bg-white p-6 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105"
+              data-aos="fade-up"
+            >
+              <img
+                src={trainer.gender === 'f' ? coachMujer : coachHombre}
+                alt={trainer.name}
+                className="w-24 h-24 object-cover rounded-full mx-auto mb-4"
+              />
+              <h3 className="text-xl font-semibold">{trainer.name}</h3>
+              <p className="text-gray-600">{trainer.disciplines}</p>
+              {trainer.schedule && (
+                <p className="text-gray-500 text-sm">
+                  Horario: {trainer.schedule}
+                </p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
