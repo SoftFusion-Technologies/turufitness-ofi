@@ -82,14 +82,14 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: FaFacebook,
-      url: "https://www.facebook.com/turu.lescano",
-      label: "Facebook",
+      url: 'https://www.facebook.com/turu.lescano',
+      label: 'Facebook'
     },
     {
       icon: FaInstagram,
-      url: "https://www.instagram.com/turufitnees/",
-      label: "Instagram",
-    },
+      url: 'https://www.instagram.com/turufitness/',
+      label: 'Instagram'
+    }
   ];
 
   const quickLinks = [
