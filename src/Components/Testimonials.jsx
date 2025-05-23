@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Importá tus videos acá
-import testimonialGabriela from '../Videos/testimonialGabriela.mp4';
+import testimonialGabriela from '../Videos/compressed_testimonialGabriela.mp4';
 
 const testimonialsData = [
   {

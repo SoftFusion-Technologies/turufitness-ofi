@@ -3,8 +3,8 @@ import { ContactContext } from '../context/ContactContext';
 import Img1 from '../assets/img1bg.webp';
 import Img2 from '../assets/img2bg.webp';
 import Img3 from '../assets/img3.webp';
-import HeroVideo from '../Videos/heroVideo.mp4';
-import HeroVideo2 from '../Videos/rutinaespalda2.mp4';
+import HeroVideo from '../Videos/compressed_heroVideo_720.mp4';
+import HeroVideo2 from '../Videos/compressed_rutinaespalda2.mp4';
 
 const Hero = () => {
   const [texto, setTexto] = useState('');

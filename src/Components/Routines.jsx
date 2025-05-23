@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import rutina1 from '../Videos/rutinaespalda1.mp4';
-import rutina2 from '../Videos/rutinaFuncional.mp4';
-import rutina3 from '../Videos/rutinaespalda2.mp4';
+import rutina1 from '../Videos/compressed_rutinaespalda1.mp4';
+import rutina2 from '../Videos/compressed_rutinaFuncional.mp4';
+import rutina3 from '../Videos/compressed_rutinaespalda2.mp4';
 
 // Aquí podrías agregar thumbnails para cada video, si los tenés
 const thumbnails = [
