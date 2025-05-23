@@ -1,14 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import LogoTF from "../Images/logoTuruFitness.jpg";
-import "../Styles/animacionlinks.css";
-import { menuItems } from "../Config/menu";
-import Contact from "../Pages/Contact";
-import { ContactContext } from "../context/ContactContext";
+import React, { useState, useEffect, useContext } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import LogoTF from '../Images/logoTuruFitness.jpg';
+import '../Styles/animacionlinks.css';
+import { menuItems } from '../Config/menu';
+import Contact from '../Pages/Contact';
+import { ContactContext } from '../context/ContactContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isContactOpen, setIsContactOpen } = useContext(ContactContext);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // Cambia el valor 50 según cuando quieras que cambie el fondo
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
   const navigate = useNavigate(); //Esto sirve para menar la navegación
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -20,30 +32,34 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Función para manejar el scroll después de redirigir
   const handleScroll = (to) => {
-    if (window.location.pathname !== "/") {
-      navigate("/");
+    if (window.location.pathname !== '/') {
+      navigate('/');
       setTimeout(() => {
         const section = document.getElementById(to);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+          section.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
     } else {
       const section = document.getElementById(to);
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+        section.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
   return (
-    <nav className="bg-white shadow-md relative z-10 overflow-visible">
+    <nav
+      className={`${
+        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+      } fixed w-full transition-all duration-300 z-50`}
+    >
       <div className="container container-navbar mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo y Nombre */}
         <div className="flex items-center space-x-3">
@@ -60,7 +76,7 @@ const Navbar = () => {
         {/* Menú Desktop */}
         <div className="hidden md:flex space-x-8">
           {menuItems.map((item) =>
-            item.href === "contacto" ? (
+            item.href === 'contacto' ? (
               <button
                 key={item.id}
                 onClick={() => setIsContactOpen(true)}
@@ -68,11 +84,11 @@ const Navbar = () => {
               >
                 {item.label}
               </button>
-            ) : item.href.startsWith("#") ? (
+            ) : item.href.startsWith('#') ? (
               <RouterLink
                 key={item.id}
                 to="/"
-                onClick={() => handleScroll(item.href.replace("#", ""))}
+                onClick={() => handleScroll(item.href.replace('#', ''))}
                 className="link font-bignoodle text-base md:text-md lg:text-lg xl:text-2xl font-medium text-black hover:text-blue-400 transition cursor-pointer"
               >
                 {item.label}
@@ -116,7 +132,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="absolute top-20 left-0 w-full bg-white shadow-md flex flex-col space-y-4 py-4 px-6 z-50">
             {menuItems.map((item) =>
-              item.href === "contacto" ? (
+              item.href === 'contacto' ? (
                 <button
                   key={item.id}
                   onClick={() => {
@@ -127,12 +143,12 @@ const Navbar = () => {
                 >
                   {item.label}
                 </button>
-              ) : item.href.startsWith("#") ? (
+              ) : item.href.startsWith('#') ? (
                 <RouterLink
                   key={item.id}
                   to="/"
                   onClick={() => {
-                    handleScroll(item.href.replace("#", ""));
+                    handleScroll(item.href.replace('#', ''));
                     setIsMenuOpen(false);
                   }}
                   className="link font-bignoodle text-base font-medium text-black hover:text-blue-400 transition cursor-pointer"

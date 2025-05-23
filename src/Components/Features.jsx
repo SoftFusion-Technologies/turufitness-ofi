@@ -12,6 +12,9 @@ import funcionalImg from '../Images/funcional.jpg';
 import coachHombre from '../Images/Entrenadores/coachHombres.jpg';
 import coachMujer from '../Images/Entrenadores/coachMujer.png';
 
+import andreaImg from '../Images/Entrenadores/andyRobles.jpeg';
+import lucianoImg from '../Images/Entrenadores/roldanLuciano.jpeg';
+
 const Features = () => {
   useEffect(() => {
     AOS.init({ easing: 'ease-in-out', once: true });
@@ -48,9 +51,14 @@ const Features = () => {
       name: 'Andrea Robles',
       disciplines: 'Funcional',
       schedule: '09:00 a 10:00',
-      gender: 'f'
+      gender: 'f',
+      image: andreaImg
     },
-    { name: 'Toni Ruiz', disciplines: 'Funcional', schedule: '20:00 a 21:00' },
+    {
+      name: 'Toni Ruiz',
+      disciplines: 'Funcional',
+      schedule: '20:00 a 21:00'
+    },
     {
       name: 'Joaquín Saltos',
       disciplines: 'Funcional, Musculación',
@@ -59,7 +67,8 @@ const Features = () => {
     {
       name: 'Luciano Roldán',
       disciplines: 'CrossFit, Musculación',
-      schedule: '17:00 a 19:00'
+      schedule: '17:00 a 19:00',
+      image: lucianoImg
     },
     {
       name: 'Noelia Albornoz',
@@ -78,7 +87,11 @@ const Features = () => {
       schedule: '',
       gender: 'f'
     },
-    { name: 'Turu Lescano', disciplines: 'Turno Tarde', schedule: '' }
+    {
+      name: 'Turu Lescano',
+      disciplines: 'Turno Tarde',
+      schedule: ''
+    }
   ];
 
   return (
@@ -122,7 +135,10 @@ const Features = () => {
               data-aos="fade-up"
             >
               <img
-                src={trainer.gender === 'f' ? coachMujer : coachHombre}
+                src={
+                  trainer.image ||
+                  (trainer.gender === 'f' ? coachMujer : coachHombre)
+                }
                 alt={trainer.name}
                 className="w-24 h-24 object-cover rounded-full mx-auto mb-4"
               />

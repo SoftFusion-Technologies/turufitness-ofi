@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ContactContext } from '../context/ContactContext'; 
+import { ContactContext } from '../context/ContactContext';
 import Img1 from '../assets/img1bg.webp';
 import Img2 from '../assets/img2bg.webp';
 import Img3 from '../assets/img3.webp';
+import HeroVideo from '../Videos/heroVideo.mp4';
 
 const Hero = () => {
   const [texto, setTexto] = useState('');
@@ -54,16 +55,22 @@ const Hero = () => {
   const { setIsContactOpen } = useContext(ContactContext);
 
   return (
-    <div
-      className="h-screen w-full Home"
-      style={{
-        backgroundImage: `url(${backgroundImages[backgroundIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        transition: 'background-image 1s ease-in-out',
-      }}
-    >
-      <div className="pt-20 flex flex-col items-center justify-center lg:pt-0 lg:flex-row">
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Video de fondo */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        src={HeroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+
+      {/* Overlay oscuro para mejorar contraste */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10" />
+
+      {/* Contenido sobre el video */}
+      <div className="relative z-20 pt-20 flex flex-col items-center justify-center lg:pt-0 lg:flex-row h-full">
         <div className="w-full text-center text-white pt-10 lg:pt-32">
           <h1 className="pt-4 text-3xl font-bold sm:text-8xl font-bignoodle">
             <span>{texto.slice(0, part1Length)}</span>
@@ -77,12 +84,14 @@ const Hero = () => {
               {texto.slice(part1Length)}
             </span>
           </h1>
+
           <div className="flex justify-center items-center">
             <p className="pt-5 w-[290px] sm:w-[450px] sm:text-xl font-messina mt-5">
               ¡Transforma tu cuerpo en nuestro gimnasio! Vení a entrenar con
               nosotros.
             </p>
           </div>
+
           <div className="flex justify-center items-center flex-col gap-4 pt-5 text-white sm:flex-row">
             <div className="w-[200px]">
               <button
