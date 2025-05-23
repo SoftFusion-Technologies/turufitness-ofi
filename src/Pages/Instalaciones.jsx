@@ -10,23 +10,24 @@
  *  Capa: Frontend
  */
 
-import imgGim1 from "../Images/Instalaciones/imgGimnasio1.webp";
-import imgGim2 from "../Images/Instalaciones/imgGImnasio2.webp";
-import clockSVG from "../Images/SVG/clock.svg";
-import locationSVG from "../Images/SVG/location.svg";
-import contactSVG from "../Images/SVG/contact.svg";
-import dumbbellSVG from "../Images/SVG/dumbbell.svg";
-import instagramSVG from "../Images/SVG/instagram.svg";
-import whatsappSVG from "../Images/SVG/whatsapp.svg";
-import returnSVG from "../Images/SVG/return.svg";
-import Slider from "react-slick";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import imgGim1 from '../Images/Instalaciones/imgGimnasio1.webp';
+import imgGim2 from '../Images/Instalaciones/imgGImnasio2.webp';
+import imgGim3 from '../Images/Instalaciones/imgGimnsaio3.webp';
+import clockSVG from '../Images/SVG/clock.svg';
+import locationSVG from '../Images/SVG/location.svg';
+import contactSVG from '../Images/SVG/contact.svg';
+import dumbbellSVG from '../Images/SVG/dumbbell.svg';
+import instagramSVG from '../Images/SVG/instagram.svg';
+import whatsappSVG from '../Images/SVG/whatsapp.svg';
+import returnSVG from '../Images/SVG/return.svg';
+import Slider from 'react-slick';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const Instalaciones = () => {
   useEffect(() => {
-    document.title = "Instalaciones Turu Fitness";
+    document.title = 'Instalaciones Turu Fitness';
   }, []);
 
   // Configuración del carrusel
@@ -41,45 +42,45 @@ const Instalaciones = () => {
     pauseOnHover: true,
     arrows: true,
     fade: true,
-    cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
+    cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          arrows: false,
-        },
-      },
-    ],
+          arrows: false
+        }
+      }
+    ]
   };
 
   // Datos del carrusel
   const carouselImages = [
     {
       src: imgGim1,
-      alt: "Gimnasio imagen 1",
-      title: "Gimnasio Moderno",
+      alt: 'Gimnasio imagen 1',
+      title: 'Gimnasio Moderno'
     },
     {
       src: imgGim2,
-      alt: "Gimnasio imagen 2",
-      title: "Equipamientos de calidad",
-    },
+      alt: 'Gimnasio imagen 2',
+      title: 'Equipamientos de calidad'
+    }
   ];
 
   // Datos de las tarjetas de información (Horarios, Ubicación, Contacto)
   const infoCards = [
     {
       icon: clockSVG,
-      title: "Horarios",
+      title: 'Horarios',
       content: (
         <p className="font-messina mt-4">
           <span className="font-bold">Lunes a Viernes</span> - 8:30hs a 23:00hs
         </p>
-      ),
+      )
     },
     {
       icon: locationSVG,
-      title: "Ubicación",
+      title: 'Ubicación',
       content: (
         <p className="font-messina mt-4">
           <a
@@ -92,11 +93,11 @@ const Instalaciones = () => {
             25 de Mayo, Simoca, Tucumán
           </a>
         </p>
-      ),
+      )
     },
     {
       icon: contactSVG,
-      title: "Contacto",
+      title: 'Contacto',
       content: (
         <>
           <div className="flex items-center mt-4">
@@ -124,24 +125,24 @@ const Instalaciones = () => {
             </a>
           </div>
         </>
-      ),
-    },
+      )
+    }
   ];
 
   // Datos de la lista de equipamientos
   const equipmentItems = [
-    "1150 mt2.",
-    "2 Salones de musculación, salón de cardio.",
-    "+50 Maquinas de musculación.",
-    "+20 Maquinas de cardio.",
-    "+1000 Kg en discos.",
-    "+40 Pares de mancuernas.",
-    "Zona de entrenamiento funcional.",
-    "Estudio de yoga y pilates.",
-    "Vestuarios con taquillas y duchas.",
-    "Servicio de entrenadores personales.",
-    "Clases grupales variadas.",
-    "Área de descanso con bebidas saludables.",
+    '1150 mt2.',
+    '2 Salones de musculación, salón de cardio.',
+    '+50 Maquinas de musculación.',
+    '+20 Maquinas de cardio.',
+    '+1000 Kg en discos.',
+    '+40 Pares de mancuernas.',
+    'Zona de entrenamiento funcional.',
+    'Estudio de yoga y pilates.',
+    'Vestuarios con taquillas y duchas.',
+    'Servicio de entrenadores personales.',
+    'Clases grupales variadas.',
+    'Área de descanso con bebidas saludables.'
   ];
 
   return (

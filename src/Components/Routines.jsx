@@ -1,21 +1,39 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import rutina1 from '../Videos/rutinaGabriela.mp4'; // Reemplazá o sumá más videos si tenés
+import rutina1 from '../Videos/rutinaespalda1.mp4';
+import rutina2 from '../Videos/rutinaFuncional.mp4';
+import rutina3 from '../Videos/rutinaespalda2.mp4';
+
+// Aquí podrías agregar thumbnails para cada video, si los tenés
+const thumbnails = [
+  '/thumbnails/rutina1.jpg',
+  '/thumbnails/rutina2.jpg',
+  '/thumbnails/rutina3.jpg'
+];
 
 const routines = [
   {
-    title: 'Rutina Full Body con Gabriela',
+    title: 'Rutina Full Espalda',
     description:
       'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
-    video: rutina1
+    video: rutina1,
+    thumbnail: thumbnails[0]
+  },
+  {
+    title: 'Rutina Funcional',
+    description:
+      'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
+    video: rutina2,
+    thumbnail: thumbnails[1]
+  },
+  {
+    title: 'Rutina Full Espalda 2',
+    description:
+      'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
+    video: rutina3,
+    thumbnail: thumbnails[2]
   }
-  // Podés agregar más rutinas aquí
-  // {
-  //   title: 'Rutina Cardio Explosiva',
-  //   description: '15 minutos intensos para quemar calorías.',
-  //   video: rutina2,
-  // },
 ];
 
 const Routines = () => {
@@ -37,17 +55,18 @@ const Routines = () => {
           quieras.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-12">
+        {/* Grid con 3 columnas en desktop, responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
           {routines.map((routine, idx) => (
             <div
               key={idx}
-              className="w-full sm:w-4/5 md:w-1/2 lg:w-1/3 aspect-[9/16] mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
+              className="w-full max-w-sm aspect-[9/16] bg-gradient-to-b from-gray-200 to-gray-400 rounded-xl shadow-lg overflow-hidden"
               data-aos="zoom-in"
             >
               <video
                 controls
-                className="w-full h-full object-cover"
-                poster="/path/to/preview.jpg" // opcional si querés una miniatura
+                className="w-full h-full object-cover bg-gray-300"
+                preload="metadata"
               >
                 <source src={routine.video} type="video/mp4" />
                 Tu navegador no soporta el video.

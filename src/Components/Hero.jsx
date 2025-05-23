@@ -4,6 +4,7 @@ import Img1 from '../assets/img1bg.webp';
 import Img2 from '../assets/img2bg.webp';
 import Img3 from '../assets/img3.webp';
 import HeroVideo from '../Videos/heroVideo.mp4';
+import HeroVideo2 from '../Videos/rutinaespalda2.mp4';
 
 const Hero = () => {
   const [texto, setTexto] = useState('');
@@ -54,17 +55,34 @@ const Hero = () => {
   // Usa el contexto para abrir el modal de contacto
   const { setIsContactOpen } = useContext(ContactContext);
 
+  const [isPortrait, setIsPortrait] = useState(
+    window.innerHeight > window.innerWidth
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {/* Video de fondo */}
+    <div className="relative w-full h-screen  overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        src={HeroVideo}
+        src={isPortrait ? HeroVideo2 : HeroVideo}
         autoPlay
         muted
         loop
         playsInline
       />
+      {/* Aquí iría el contenido sobre el video */}
 
       {/* Overlay oscuro para mejorar contraste */}
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10" />
