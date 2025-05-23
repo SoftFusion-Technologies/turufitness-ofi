@@ -10,22 +10,19 @@ const routines = [
     title: 'Rutina Full Espalda',
     description:
       'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
-    video: rutina1,
-    thumbnail: thumbnails[0]
+    video: rutina1
   },
   {
     title: 'Rutina Funcional',
     description:
       'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
-    video: rutina2,
-    thumbnail: thumbnails[1]
+    video: rutina2
   },
   {
     title: 'Rutina Full Espalda 2',
     description:
       'Entrenamiento completo para activar todo el cuerpo. Ideal para comenzar el día con energía.',
-    video: rutina3,
-    thumbnail: thumbnails[2]
+    video: rutina3
   }
 ];
 
