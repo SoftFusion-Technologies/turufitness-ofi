@@ -5,13 +5,6 @@ import rutina1 from '../Videos/compressed_rutinaespalda1.mp4';
 import rutina2 from '../Videos/compressed_rutinaFuncional.mp4';
 import rutina3 from '../Videos/compressed_rutinaespalda2.mp4';
 
-// Aquí podrías agregar thumbnails para cada video, si los tenés
-const thumbnails = [
-  '/thumbnails/rutina1.jpg',
-  '/thumbnails/rutina2.jpg',
-  '/thumbnails/rutina3.jpg'
-];
-
 const routines = [
   {
     title: 'Rutina Full Espalda',
