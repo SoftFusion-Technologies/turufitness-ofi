@@ -12,7 +12,7 @@ import FAQ from './Pages/FAQ';
 
 // Importar el proveedor del contexto
 import { ContactProvider } from './context/ContactContext';
-
+import LoginForm from './Components/login/LoginForm';
 function App() {
   return (
     <ContactProvider>
@@ -24,6 +24,7 @@ function App() {
           {/* <Route path="/planes" element={<Planes />} /> */}
           <Route path="/instalaciones" element={<Instalaciones />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
         <Mapa />
         <Footer />
