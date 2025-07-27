@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 
 // Importá tus videos acá
 import testimonialGabriela from '../Videos/compressed_testimonialGabriela.mp4';
+import testimonioYohana from '../Videos/testimonioYohana.mp4';
 
 const testimonialsData = [
   {
@@ -12,13 +13,13 @@ const testimonialsData = [
     description:
       'Conocé la historia de superación de Gabriela y cómo nuestras clases transformaron su vida.',
     video: testimonialGabriela
-  }
+  },
   // Agregá más testimonios aquí en el futuro
-  // {
-  //   name: 'Carlos',
-  //   description: 'Carlos logró cambiar su vida en 3 meses de entrenamiento.',
-  //   video: testimonialCarlos,
-  // },
+  {
+    name: 'Yohana',
+    description: 'Yohana logró cambiar su vida en pocos meses de entrenamiento.',
+    video: testimonioYohana
+  }
 ];
 
 const Testimonials = () => {
