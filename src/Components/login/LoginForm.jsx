@@ -98,7 +98,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="h-screen loginbg w-full flex items-center justify-center bg-cover bg-center relative">
+    <div className="h-screen loginbg font-bignoodle w-full flex items-center justify-center bg-cover bg-center relative">
       <StarsCanvas2></StarsCanvas2>
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}

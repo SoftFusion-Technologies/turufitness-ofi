@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext } from 'react';
 import {
   FaFacebook,
   FaInstagram,
@@ -6,14 +6,16 @@ import {
   FaArrowUp,
   FaWhatsapp,
   FaMapMarkerAlt,
-  FaEnvelope,
-} from "react-icons/fa";
-import { ContactContext } from "../context/ContactContext";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+  FaEnvelope
+} from 'react-icons/fa';
+import { ContactContext } from '../context/ContactContext';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Mapa from './Mapa';
+import { useLocation } from 'react-router-dom';
 
 const WhatsAppLink = ({ number }) => (
   <a
-    href={`https://wa.me/${number.replace(/\D/g, "")}`}
+    href={`https://wa.me/${number.replace(/\D/g, '')}`}
     target="_blank"
     rel="noopener noreferrer"
     className="group inline-flex items-center gap-3 text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2"
@@ -32,19 +34,19 @@ const Footer = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: "50px",
+      rootMargin: '50px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("appear");
+          entry.target.classList.add('appear');
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll(".animate-on-scroll");
+    const elements = document.querySelectorAll('.animate-on-scroll');
     elements.forEach((el, index) => {
       el.style.animationDelay = `${index * 0.2}s`;
       observer.observe(el);
@@ -54,7 +56,7 @@ const Footer = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleScroll = (to, adress) => {
@@ -64,20 +66,21 @@ const Footer = () => {
         const section = document.getElementById(to);
         if (section) {
           const offset = -100;
-          const elementPosition = section.getBoundingClientRect().top + window.scrollY + offset;
-          window.scrollTo({ top: elementPosition, behavior: "smooth" });
+          const elementPosition =
+            section.getBoundingClientRect().top + window.scrollY + offset;
+          window.scrollTo({ top: elementPosition, behavior: 'smooth' });
         }
       }, 300);
     } else {
       const section = document.getElementById(to);
       if (section) {
         const offset = -100;
-        const elementPosition = section.getBoundingClientRect().top + window.scrollY + offset;
-        window.scrollTo({ top: elementPosition, behavior: "smooth" });
+        const elementPosition =
+          section.getBoundingClientRect().top + window.scrollY + offset;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
       }
     }
   };
-  
 
   const socialLinks = [
     {
@@ -94,44 +97,49 @@ const Footer = () => {
 
   const quickLinks = [
     {
-      label: "Entrenadores",
-      onClick: () => handleScroll("entrenadores", ""), 
-      link: true, 
+      label: 'Entrenadores',
+      onClick: () => handleScroll('entrenadores', ''),
+      link: true
     },
     {
-      label: "Horarios",
-      onClick: () => handleScroll("instalaciones", "instalaciones"),
-      link: true, 
+      label: 'Horarios',
+      onClick: () => handleScroll('instalaciones', 'instalaciones'),
+      link: true
     },
     {
-      label: "Contacto",
-      onClick: () => setIsContactOpen(true), 
-    },
+      label: 'Contacto',
+      onClick: () => setIsContactOpen(true)
+    }
   ];
 
   const contactInfo = [
     {
       icon: FaWhatsapp,
-      label: "¡Chatea con nosotros!",
-      href: "https://wa.me/5493863531891",
-      type: "whatsapp",
+      label: '¡Chatea con nosotros!',
+      href: 'https://wa.me/5493863531891',
+      type: 'whatsapp'
     },
     {
       icon: FaMapMarkerAlt,
-      label: "Ver Ubicación",
-      href: "https://maps.app.goo.gl/8QMfPYdeYyR8gXkeA",
-      type: "link",
+      label: 'Ver Ubicación',
+      href: 'https://maps.app.goo.gl/8QMfPYdeYyR8gXkeA',
+      type: 'link'
     },
     {
       icon: FaEnvelope,
-      label: "contacto@turufitness.com",
-      href: "mailto:contacto@turufitness.com",
-      type: "email",
-    },
+      label: 'contacto@turufitness.com',
+      href: 'mailto:contacto@turufitness.com',
+      type: 'email'
+    }
   ];
+
+  const location = useLocation();
+  const ocultarMapa = location.pathname === '/dashboard';
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-300">
+      {!ocultarMapa && <Mapa />}
+
       <div className="h-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -177,7 +185,7 @@ const Footer = () => {
                 <li key={index}>
                   {link.link ? (
                     <RouterLink
-                      to={link.href || "#"}
+                      to={link.href || '#'}
                       onClick={
                         link.onClick
                           ? (e) => {
@@ -193,7 +201,7 @@ const Footer = () => {
                     </RouterLink>
                   ) : (
                     <a
-                      href={link.href || "#"} // Usa `link.href` o un valor por defecto
+                      href={link.href || '#'} // Usa `link.href` o un valor por defecto
                       onClick={
                         link.onClick
                           ? (e) => {
@@ -221,8 +229,8 @@ const Footer = () => {
             <ul className="space-y-6">
               {contactInfo.map((contact, index) => (
                 <li key={index}>
-                  {contact.type === "whatsapp" ? (
-                    <WhatsAppLink number={contact.href.split("wa.me/")[1]} />
+                  {contact.type === 'whatsapp' ? (
+                    <WhatsAppLink number={contact.href.split('wa.me/')[1]} />
                   ) : (
                     <a
                       href={contact.href}

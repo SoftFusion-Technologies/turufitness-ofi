@@ -13,7 +13,11 @@ import FAQ from './Pages/FAQ';
 // Importar el proveedor del contexto
 import { ContactProvider } from './context/ContactContext';
 import LoginForm from './Components/login/LoginForm';
+import AdminPage from './Pages/staff/AdminPage';
+import ProtectedRoute from './ProtectedRoute';
+
 function App() {
+
   return (
     <ContactProvider>
       <Router>
@@ -25,8 +29,16 @@ function App() {
           <Route path="/instalaciones" element={<Instalaciones />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <AdminPage />{' '}
+              </ProtectedRoute>
+            }
+          />
         </Routes>
-        <Mapa />
         <Footer />
       </Router>
     </ContactProvider>
