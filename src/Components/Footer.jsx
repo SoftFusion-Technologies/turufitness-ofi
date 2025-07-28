@@ -134,11 +134,11 @@ const Footer = () => {
   ];
 
   const location = useLocation();
-  const ocultarMapa = location.pathname === '/dashboard';
+  const ocultarMapa = location.pathname === '/';
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-300">
-      {!ocultarMapa && <Mapa />}
+      {ocultarMapa && <Mapa />}
 
       <div className="h-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600"></div>
 

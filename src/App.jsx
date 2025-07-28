@@ -15,9 +15,10 @@ import { ContactProvider } from './context/ContactContext';
 import LoginForm from './Components/login/LoginForm';
 import AdminPage from './Pages/staff/AdminPage';
 import ProtectedRoute from './ProtectedRoute';
+import UsuariosGet from './Pages/MetodsGet/UsuariosGet';
+import ClientesGet from './Pages/MetodsGet/ClientesGet';
 
 function App() {
-
   return (
     <ContactProvider>
       <Router>
@@ -38,6 +39,24 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/dashboard/usuarios"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <UsuariosGet />{' '}
+              </ProtectedRoute>
+            }
+          />{' '}
+          <Route
+            path="/dashboard/clientes"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <ClientesGet />{' '}
+              </ProtectedRoute>
+            }
+          />{' '}
         </Routes>
         <Footer />
       </Router>
