@@ -7,7 +7,10 @@ import axios from 'axios';
 import Info from '../../Components/Info';
 import formatearFechaARG from '../../Components/formatearFechaARG';
 import ParticlesBackground from '../../Components/ParticlesBackground';
+import BackButton from '../../Components/ BackButton';
 export default function ClientesGet() {
+  const todayISO = new Date().toISOString().split('T')[0];
+
   const [clientes, setClientes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -17,10 +20,9 @@ export default function ClientesGet() {
     telefono: '',
     email: '',
     monto: '',
-    porcentaje_recargo: '',
     fecha_inscripcion: '',
     fecha_vencimiento: '',
-    ultima_notificacion: '',
+    ultima_notificacion: todayISO,
     fecha_alta: '',
     estado: '',
     tipo_membresia: '',
@@ -45,6 +47,23 @@ export default function ClientesGet() {
       .then((data) => setPlanes(data))
       .catch((err) => console.error('Error al cargar planes:', err));
   }, []);
+
+  useEffect(() => {
+    const hoy = new Date();
+    const iso = hoy.toISOString().slice(0, 10); // yyyy-mm-dd
+
+    const esFechaValida = (fecha) => {
+      return !isNaN(new Date(fecha).getTime());
+    };
+
+    setFormData((prev) => ({
+      ...prev,
+      ultima_notificacion: esFechaValida(prev.ultima_notificacion)
+        ? prev.ultima_notificacion
+        : iso
+    }));
+  }, []);
+
   const openModal = (cliente = null) => {
     if (cliente) {
       setEditId(cliente.id);
@@ -155,6 +174,7 @@ export default function ClientesGet() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-800 to-emerald-900 py-10 px-3 md:px-6 relative font-sans">
       <ParticlesBackground></ParticlesBackground>
+    <BackButton></BackButton>
       <div className="max-w-5xl mx-auto flex flex-col gap-4">
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
           <motion.h1
@@ -514,7 +534,6 @@ export default function ClientesGet() {
                     c.estado === 'activo' ? 'text-emerald-300' : 'text-rose-300'
                   }
                 />
-                <Info label="Recargo" value={`${c.porcentaje_recargo || 0}%`} />
                 <Info label="Origen" value={c.origen} />
                 <Info
                   label="Notif. WhatsApp"
@@ -566,55 +585,58 @@ export default function ClientesGet() {
               <h2 className="text-2xl font-bold mb-4 text-emerald-600">
                 {editId ? 'Editar Cliente' : 'Nuevo Cliente'}
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-4 text-gray-800">
-                {/* Grupo: DNI + Nombre */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="DNI"
-                    value={formData.dni}
-                    onChange={(e) =>
-                      setFormData({ ...formData, dni: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    required
-                  />
-                  <input
-                    type="text"
-                    placeholder="Nombre"
-                    value={formData.nombre}
-                    onChange={(e) =>
-                      setFormData({ ...formData, nombre: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    required
-                  />
-                </div>
+              <div className="max-h-[90vh] overflow-y-auto pr-1">
+                <form
+                  onSubmit={handleSubmit}
+                  className="w-full max-w-3xl mx-auto grid gap-y-5 text-gray-800"
+                >
+                  {/* Grupo: DNI + Nombre */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
+                    <input
+                      type="text"
+                      placeholder="DNI"
+                      value={formData.dni}
+                      onChange={(e) =>
+                        setFormData({ ...formData, dni: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Nombre"
+                      value={formData.nombre}
+                      onChange={(e) =>
+                        setFormData({ ...formData, nombre: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                      required
+                    />
+                  </div>
 
-                {/* Grupo: Teléfono + Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Teléfono"
-                    value={formData.telefono}
-                    onChange={(e) =>
-                      setFormData({ ...formData, telefono: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                  />
-                </div>
+                  {/* Grupo: Teléfono + Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
+                    <input
+                      type="text"
+                      placeholder="Teléfono"
+                      value={formData.telefono}
+                      onChange={(e) =>
+                        setFormData({ ...formData, telefono: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                    />
+                  </div>
 
-                {/* Grupo: Monto + Recargo */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Monto abonado */}
                   <input
                     type="number"
                     placeholder="Monto abonado"
@@ -624,187 +646,157 @@ export default function ClientesGet() {
                     }
                     className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
                   />
-                  <input
-                    type="number"
-                    placeholder="% Recargo por mora"
-                    value={formData.porcentaje_recargo}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        porcentaje_recargo: e.target.value
-                      })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                  />
-                </div>
 
-                {/* Grupo: Fechas */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-emerald-600 mb-1">
-                      Fecha Inscripción
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.fecha_inscripcion}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          fecha_inscripcion: e.target.value
-                        })
-                      }
-                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-emerald-600 mb-1">
-                      Fecha Vencimiento
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.fecha_vencimiento}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          fecha_vencimiento: e.target.value
-                        })
-                      }
-                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-emerald-600 mb-1">
-                      Última Notificación
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.ultima_notificacion}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          ultima_notificacion: e.target.value
-                        })
-                      }
-                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    />
-                  </div>
-                  {editId && (
+                  {/* Fechas */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
                     <div>
                       <label className="block text-sm font-semibold text-emerald-600 mb-1">
-                        Fecha Alta (solo lectura)
+                        Fecha Inscripción
                       </label>
                       <input
-                        type="datetime-local"
-                        value={formData.fecha_alta?.slice(0, 16)}
-                        disabled
-                        className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed"
+                        type="date"
+                        value={formData.fecha_inscripcion}
+                        onChange={(e) => {
+                          const fechaInscripcion = e.target.value;
+                          const fechaObj = new Date(fechaInscripcion);
+                          const fechaVencimiento = new Date(fechaObj);
+                          fechaVencimiento.setMonth(
+                            fechaVencimiento.getMonth() + 1
+                          );
+                          const toISO = (fecha) =>
+                            fecha.toISOString().split('T')[0];
+
+                          setFormData({
+                            ...formData,
+                            fecha_inscripcion: fechaInscripcion,
+                            fecha_vencimiento: toISO(fechaVencimiento)
+                          });
+                        }}
+                        className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
                       />
                     </div>
-                  )}
-                </div>
 
-                {/* Estado + Tipo membresía */}
-                {/* Estado + Tipo membresía + Pagado */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <select
-                    value={formData.estado}
-                    onChange={(e) =>
-                      setFormData({ ...formData, estado: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    required
-                  >
-                    <option value="">Seleccionar estado</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                    <option value="suspendido">Suspendido</option>
-                    <option value="moroso">Moroso</option>
-                  </select>
+                    <div>
+                      <label className="block text-sm font-semibold text-emerald-600 mb-1">
+                        Fecha Vencimiento
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.fecha_vencimiento}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            fecha_vencimiento: e.target.value
+                          })
+                        }
+                        className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                      />
+                    </div>
+                  </div>
 
-                  <select
-                    value={formData.pagado}
-                    onChange={(e) =>
-                      setFormData({ ...formData, pagado: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                    required
-                  >
-                    <option value="">¿Pagado?</option>
-                    <option value="SI">Sí</option>
-                    <option value="NO">No</option>
-                  </select>
-                </div>
+                  {/* Estado + Pagado + Tipo membresía */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
+                    <select
+                      value={formData.estado}
+                      onChange={(e) =>
+                        setFormData({ ...formData, estado: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                      required
+                    >
+                      <option value="">Seleccionar estado</option>
+                      <option value="activo">Activo</option>
+                      <option value="inactivo">Inactivo</option>
+                      <option value="suspendido">Suspendido</option>
+                      <option value="moroso">Moroso</option>
+                    </select>
 
-                {/* Selección del plan */}
-                <div>
-                  <label className="block text-sm font-semibold text-emerald-600 mb-1">
-                    Plan de Membresía
-                  </label>
-                  <select
-                    value={formData.plan_id || ''}
-                    onChange={(e) =>
-                      setFormData({ ...formData, plan_id: e.target.value })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                  >
-                    <option value="">Seleccionar plan</option>
-                    {planes.map((plan) => (
-                      <option key={plan.id} value={plan.id}>
-                        {plan.nombre} - {plan.duracion_dias} días - $
-                        {Number(plan.precio).toLocaleString('es-AR')}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {/* Origen */}
-                <input
-                  type="text"
-                  placeholder="Origen (ej: Instagram, Referido...)"
-                  value={formData.origen}
-                  onChange={(e) =>
-                    setFormData({ ...formData, origen: e.target.value })
-                  }
-                  className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                />
+                    <select
+                      value={formData.pagado}
+                      onChange={(e) =>
+                        setFormData({ ...formData, pagado: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                      required
+                    >
+                      <option value="">¿Pagado?</option>
+                      <option value="SI">Sí</option>
+                      <option value="NO">No</option>
+                    </select>
+                  </div>
 
-                {/* Notificación WhatsApp */}
-                <div className="flex items-center gap-2">
+                  {/* Plan Membresía */}
+                  <div>
+                    <label className="block text-sm font-semibold text-emerald-600 mb-1">
+                      Plan de Membresía
+                    </label>
+                    <select
+                      value={formData.plan_id || ''}
+                      onChange={(e) =>
+                        setFormData({ ...formData, plan_id: e.target.value })
+                      }
+                      className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                    >
+                      <option value="">Seleccionar plan</option>
+                      {planes.map((plan) => (
+                        <option key={plan.id} value={plan.id}>
+                          {plan.nombre} - {plan.duracion_dias} días - $
+                          {Number(plan.precio).toLocaleString('es-AR')}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Origen */}
                   <input
-                    type="checkbox"
-                    checked={formData.notificacion_whatsapp}
+                    type="text"
+                    placeholder="Origen (ej: Instagram, Referido...)"
+                    value={formData.origen}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        notificacion_whatsapp: e.target.checked
-                      })
+                      setFormData({ ...formData, origen: e.target.value })
                     }
+                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
                   />
-                  <label className="text-sm text-gray-700">
-                    Recibir notificación por WhatsApp
-                  </label>
-                </div>
 
-                {/* Notas */}
-                <textarea
-                  placeholder="Notas internas"
-                  value={formData.notas}
-                  onChange={(e) =>
-                    setFormData({ ...formData, notas: e.target.value })
-                  }
-                  className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white resize-none"
-                  rows={3}
-                />
+                  {/* Notificación WhatsApp */}
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.notificacion_whatsapp}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          notificacion_whatsapp: e.target.checked
+                        })
+                      }
+                    />
+                    <label className="text-sm text-gray-700">
+                      Recibir notificación por WhatsApp
+                    </label>
+                  </div>
 
-                {/* Botón */}
-                <div className="text-right">
-                  <button
-                    type="submit"
-                    className="bg-emerald-500 hover:bg-emerald-600 px-6 py-2 text-white font-medium rounded-lg"
-                  >
-                    {editId ? 'Actualizar' : 'Guardar'}
-                  </button>
-                </div>
-              </form>
+                  {/* Notas */}
+                  <textarea
+                    placeholder="Notas internas"
+                    value={formData.notas}
+                    onChange={(e) =>
+                      setFormData({ ...formData, notas: e.target.value })
+                    }
+                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white resize-none"
+                    rows={3}
+                  />
+
+                  {/* Botón */}
+                  <div className="text-right">
+                    <button
+                      type="submit"
+                      className="bg-emerald-500 hover:bg-emerald-600 px-6 py-2 text-white font-medium rounded-lg transition-transform active:scale-95"
+                    >
+                      {editId ? 'Actualizar' : 'Guardar'}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </motion.div>
           </Modal>
         )}

@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { FaUser, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import ParticlesBackground from '../../Components/ParticlesBackground';
+import BackButton from '../../Components/ BackButton';
 
 Modal.setAppElement('#root');
 
@@ -98,7 +99,7 @@ export default function UsuariosGet() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1f2937] via-[#111827] to-[#000000] py-12 px-6 text-white relative font-sans">
       <ParticlesBackground />
-
+    <BackButton></BackButton>
       <div className="max-w-6xl mx-auto mt-10">
         <div className="flex justify-between items-center mb-10">
           <h1 className="text-4xl titulo uppercase font-extrabold text-white flex items-center gap-3 drop-shadow-xl">

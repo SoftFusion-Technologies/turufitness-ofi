@@ -19,6 +19,7 @@ import UsuariosGet from './Pages/MetodsGet/UsuariosGet';
 import ClientesGet from './Pages/MetodsGet/ClientesGet';
 import PlanesMembresiaAdmin from './Pages/MetodsGet/PlanesMembresiaAdmin';
 import AccesosGet from './Pages/MetodsGet/AccesosGet';
+import VentanaAcceso from './Pages/VentanaAcceso';
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
               </ProtectedRoute>
             }
           />{' '}
+          <Route path="/acceder" element={<VentanaAcceso />} />{' '}
         </Routes>
         <Footer />
       </Router>

@@ -10,6 +10,9 @@ export default {
         white: '#FFFFFF',
         purple: '#6C63FF',
         lightGray: '#F5F5F5'
+      },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite' // 🌀 giro suave y lento
       }
     }
   },

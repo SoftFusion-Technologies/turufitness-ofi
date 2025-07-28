@@ -8,6 +8,7 @@ import {
   FaMoneyBillWave
 } from 'react-icons/fa';
 import ParticlesBackground from '../../Components/ParticlesBackground';
+import BackButton from '../../Components/ BackButton';
 
 export default function PlanesMembresiaAdmin() {
   const [planes, setPlanes] = useState([]);
@@ -73,6 +74,7 @@ export default function PlanesMembresiaAdmin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-950 via-teal-900 to-cyan-800 py-10 px-4">
       <ParticlesBackground></ParticlesBackground>
+      <BackButton></BackButton>
       <div className="max-w-5xl mx-auto mt-10">
         <motion.h1
           className="text-4xl font-extrabold text-center text-green-200 mb-10 uppercase drop-shadow"
