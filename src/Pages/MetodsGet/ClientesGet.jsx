@@ -6,6 +6,7 @@ import AdminActions from '../../Components/AdminActions';
 import axios from 'axios';
 import Info from '../../Components/Info';
 import formatearFechaARG from '../../Components/formatearFechaARG';
+import ParticlesBackground from '../../Components/ParticlesBackground';
 export default function ClientesGet() {
   const [clientes, setClientes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,16 +17,18 @@ export default function ClientesGet() {
     telefono: '',
     email: '',
     monto: '',
-    pagado: 'NO',
-    tipo_membresia: 'mensual',
+    porcentaje_recargo: '',
     fecha_inscripcion: '',
     fecha_vencimiento: '',
     ultima_notificacion: '',
-    estado: 'activo',
-    notas: '',
+    fecha_alta: '',
+    estado: '',
+    tipo_membresia: '',
+    pagado: '',
     origen: '',
     notificacion_whatsapp: true,
-    plan_id: null // solo si estás usando planes
+    notas: '',
+    plan_id: ''
   });
 
   const [search, setSearch] = useState('');
@@ -34,7 +37,14 @@ export default function ClientesGet() {
   const [fechaInscripcion, setFechaInscripcion] = useState('');
   const [fechaVencimiento, setFechaVencimiento] = useState('');
   const [ultimaNotificacion, setUltimaNotificacion] = useState('');
+  const [planes, setPlanes] = useState([]);
 
+  useEffect(() => {
+    fetch('http://localhost:8080/planes-membresia') // o la ruta que uses
+      .then((res) => res.json())
+      .then((data) => setPlanes(data))
+      .catch((err) => console.error('Error al cargar planes:', err));
+  }, []);
   const openModal = (cliente = null) => {
     if (cliente) {
       setEditId(cliente.id);
@@ -144,6 +154,7 @@ export default function ClientesGet() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-800 to-emerald-900 py-10 px-3 md:px-6 relative font-sans">
+      <ParticlesBackground></ParticlesBackground>
       <div className="max-w-5xl mx-auto flex flex-col gap-4">
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
           <motion.h1
@@ -710,19 +721,6 @@ export default function ClientesGet() {
                     <option value="moroso">Moroso</option>
                   </select>
 
-                  <input
-                    type="text"
-                    placeholder="Tipo de membresía"
-                    value={formData.tipo_membresia}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        tipo_membresia: e.target.value
-                      })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
-                  />
-
                   <select
                     value={formData.pagado}
                     onChange={(e) =>
@@ -737,6 +735,27 @@ export default function ClientesGet() {
                   </select>
                 </div>
 
+                {/* Selección del plan */}
+                <div>
+                  <label className="block text-sm font-semibold text-emerald-600 mb-1">
+                    Plan de Membresía
+                  </label>
+                  <select
+                    value={formData.plan_id || ''}
+                    onChange={(e) =>
+                      setFormData({ ...formData, plan_id: e.target.value })
+                    }
+                    className="w-full px-4 py-2 rounded-lg border border-emerald-200 bg-white"
+                  >
+                    <option value="">Seleccionar plan</option>
+                    {planes.map((plan) => (
+                      <option key={plan.id} value={plan.id}>
+                        {plan.nombre} - {plan.duracion_dias} días - $
+                        {Number(plan.precio).toLocaleString('es-AR')}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 {/* Origen */}
                 <input
                   type="text"

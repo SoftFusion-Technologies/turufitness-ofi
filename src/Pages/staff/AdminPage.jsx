@@ -21,7 +21,8 @@ const AdminPage = () => {
             {[
               { label: 'Usuarios', link: '/dashboard/usuarios' },
               { label: 'Clientes', link: '/dashboard/clientes' },
-              { label: 'Accesos', link: '/dashboard/accesos' }
+              { label: 'Accesos', link: '/dashboard/accesos' },
+              { label: 'Planes', link: '/dashboard/planes' }
             ].map(({ label, link }, index) => (
               <div
                 key={index}

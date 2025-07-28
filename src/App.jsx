@@ -17,6 +17,8 @@ import AdminPage from './Pages/staff/AdminPage';
 import ProtectedRoute from './ProtectedRoute';
 import UsuariosGet from './Pages/MetodsGet/UsuariosGet';
 import ClientesGet from './Pages/MetodsGet/ClientesGet';
+import PlanesMembresiaAdmin from './Pages/MetodsGet/PlanesMembresiaAdmin';
+import AccesosGet from './Pages/MetodsGet/AccesosGet';
 
 function App() {
   return (
@@ -54,6 +56,24 @@ function App() {
               <ProtectedRoute>
                 {' '}
                 <ClientesGet />{' '}
+              </ProtectedRoute>
+            }
+          />{' '}
+          <Route
+            path="/dashboard/planes"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <PlanesMembresiaAdmin />{' '}
+              </ProtectedRoute>
+            }
+          />{' '}
+          <Route
+            path="/dashboard/accesos"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <AccesosGet />{' '}
               </ProtectedRoute>
             }
           />{' '}
